@@ -1,38 +1,47 @@
+import logging
 from apscheduler.schedulers.blocking import BlockingScheduler
 from datetime import datetime
-from bot.database.db_manager import DatabaseManager
-from bot.data_processing.data_updater import update_pair_data
+import asyncio
+from asyncio import Semaphore
+from bot.data_processing.data_updater import update_all_assets
 
-def scheduled_task(pairs):
+# Налаштування логування
+LOG_FILE = "zscore_bot.log"
+logging.basicConfig(
+    filename=LOG_FILE,
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+    encoding="utf-8",  # Додаємо кодування UTF-8
+)
+
+def scheduled_task():
     """
-    Завдання для оновлення даних.
+    Завдання для оновлення даних із перевіркою актуальності.
     """
-    print(f"🔄 Початок оновлення: {datetime.now()}")
-    db_manager = DatabaseManager()
+    print(f"🔄 Початок оновлення даних.")
+    logging.info("🔄 Початок оновлення даних.")
     try:
-        for pair in pairs:
-            update_pair_data(pair, db_manager)
-        print(f"✅ Оновлення завершено: {datetime.now()}")
+        sem = Semaphore(10)  # Створюємо новий Semaphore для кожного виклику
+        asyncio.run(update_all_assets(sem))
+        print(f"✅ Оновлення завершено успішно.")
+        logging.info("✅ Оновлення завершено успішно.")
     except Exception as e:
         print(f"❌ Помилка під час оновлення: {e}")
-    finally:
-        db_manager.close()
+        logging.error(f"❌ Помилка під час оновлення: {e}")
 
-def setup_scheduler(pairs):
+def setup_scheduler():
     """
     Налаштування розкладу для оновлення даних.
     """
     scheduler = BlockingScheduler()
     # Запуск задачі на 0, 15, 30, 45 хвилинах кожної години
-    scheduler.add_job(scheduled_task, 'cron', minute='0,15,30,45', args=[pairs])
+    scheduler.add_job(scheduled_task, 'cron', minute='0,15,30,45')
 
-    print("📅 Розклад оновлення активовано. Натисніть Ctrl+C для зупинки.")
+    logging.info("📅 Розклад оновлення активовано.")
+    print("📅 Розклад оновлення активовано.")
     try:
         scheduler.start()
     except (KeyboardInterrupt, SystemExit):
+        logging.info("⏹ Розклад зупинено користувачем.")
         print("⏹ Розклад зупинено користувачем.")
-
-# Для тестування
-if __name__ == "__main__":
-    test_pairs = ["BTC/ETH", "BNB/USDT"]
-    setup_scheduler(test_pairs)

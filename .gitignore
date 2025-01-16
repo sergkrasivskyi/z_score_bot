@@ -3,3 +3,4 @@ bot/data_storage/focusedPairs.json
 bot/data_storage/monitoredPairs.json
 Опис проекту для chatGPT/
 README.md
+.env

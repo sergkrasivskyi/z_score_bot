@@ -1,6 +1,7 @@
 from bot.database.db_manager import DatabaseManager
-from bot.data_processing.z_score_calculator import calculate_z_score
+from bot.data_storage.json_manager import JSONManager
 import requests
+from datetime import datetime
 
 BASE_URL = "https://api.binance.com"
 
@@ -18,43 +19,62 @@ def fetch_historical_prices(symbol, interval="15m", limit=672):
         response = requests.get(endpoint, params=params)
         response.raise_for_status()
         data = response.json()
-        prices = [float(candle[4]) for candle in data]
-        return prices
+        return [
+            {"timestamp": int(candle[0] / 1000), "price": float(candle[4])}
+            for candle in data
+        ]
     except requests.RequestException as e:
         print(f"Помилка завантаження даних для {symbol}: {e}")
         return None
 
-def update_pair_data(pair, db_manager):
+def get_unique_assets(pairs):
     """
-    Оновлення даних для пари та запис у базу даних.
+    Визначення унікальних активів із переліку пар.
     """
-    try:
-        base_asset, quote_asset = pair.split("/")
-        base_prices = fetch_historical_prices(f"{base_asset}USDT")
-        quote_prices = fetch_historical_prices(f"{quote_asset}USDT")
-        
-        if not base_prices or not quote_prices:
-            raise ValueError(f"Не вдалося отримати дані для {pair}")
-        
-        zscore = calculate_z_score(base_prices, quote_prices)
-        cross_rate = base_prices[-1] / quote_prices[-1]
+    assets = set()
+    for pair in pairs:
+        base, quote = pair.split("/")
+        assets.update([base, quote])
+    return list(assets)
 
-        print(f"Z-Score для {pair}: {zscore}, Cross-Rate: {cross_rate}")
+def update_asset_prices(db_manager, asset):
+    """
+    Оновлення історичних цін для активу.
+    """
+    symbol = f"{asset}USDT"
+    historical_prices = fetch_historical_prices(symbol)
 
-        # Зберігання у базі даних
-        db_manager.insert_or_update_pair(
-            pair=pair,
-            zscore=zscore,
-            cross_rate=cross_rate
-        )
-        return zscore
-    except Exception as e:
-        print(f"Помилка оновлення даних для {pair}: {e}")
-        return None
+    if historical_prices:
+        for data in historical_prices:
+            db_manager.insert_or_update_crypto(
+                name=symbol,
+                timestamp=datetime.utcfromtimestamp(data["timestamp"]).isoformat(),
+                price=data["price"]
+            )
+        print(f"✅ Дані для {symbol} оновлено.")
+    else:
+        print(f"❌ Не вдалося оновити дані для {symbol}.")
+
+def update_all_assets():
+    """
+    Оновлення історичних даних для всіх унікальних активів.
+    """
+    json_manager = JSONManager()
+    db_manager = DatabaseManager()
+
+    # Завантаження пар із JSON
+    monitored_pairs = json_manager.get_monitored_pairs()
+    pairs = [pair["pair"] for pair in monitored_pairs]
+
+    # Визначення унікальних активів
+    unique_assets = get_unique_assets(pairs)
+
+    # Оновлення даних для кожного активу
+    for asset in unique_assets:
+        update_asset_prices(db_manager, asset)
+
+    db_manager.close()
 
 # Для тестування
 if __name__ == "__main__":
-    db_manager = DatabaseManager()
-    pair = "BTC/ETH"
-    zscore = update_pair_data(pair, db_manager)
-    db_manager.close()
+    update_all_assets()

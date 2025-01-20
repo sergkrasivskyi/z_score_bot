@@ -62,7 +62,7 @@ class DatabaseManager:
                 price = excluded.price
             """, (name, timestamp, price))
             self.connection.commit()
-          #  logging.info(f"✅ Дані для {name} оновлено: {timestamp}, {price}.")
+            logging.info(f"✅ Дані для {name} оновлено: {timestamp}, {price}.")
         except Exception as e:
             logging.error(f"❌ Помилка при оновленні даних для {name}: {e}.")
 

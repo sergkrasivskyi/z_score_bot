@@ -20,7 +20,7 @@ logging.basicConfig(
 
 BASE_URL = "https://api.binance.com"
 
-SEM_LIMIT = 10  # Максимальна кількість паралельних запитів
+SEM_LIMIT = 20  # Максимальна кількість паралельних запитів
 semaphore = Semaphore(SEM_LIMIT)
 
 async def fetch_prices(session, symbol, start_time=None):
@@ -41,7 +41,9 @@ async def fetch_prices(session, symbol, start_time=None):
             async with session.get(url, headers=headers, params=params) as response:
                 response.raise_for_status()
                 data = await response.json()
-                logging.info(f"✅ Дані для {symbol} отримані. Періоди: {len(data)}.")
+                #logging.info(f"✅ Дані для {symbol} отримані. Періоди: {len(data)}.")
+                timestamps = [int(candle[0] / 1000) for candle in data]
+                logging.info(f"🕒 Отримано timestamps для {symbol}: {timestamps}")
                 return [
                     {"timestamp": int(candle[0] / 1000), "price": float(candle[4])}
                     for candle in data
@@ -78,6 +80,12 @@ async def update_asset(session, db_manager, asset, semaphore):
             if data["timestamp"] not in existing_timestamps
         ]
         logging.info(f"🔢 Нових періодів для {symbol}: {len(new_data)}.")
+        new_data = [
+            data for data in historical_prices
+            if data["timestamp"] > datetime.fromisoformat(latest_record[2]).timestamp()
+        ]     
+        logging.info(f"🔢 Перевірено нові періоди для {symbol}: {len(new_data)} нових.")
+
 
         # Видалення старих даних
         if len(existing_timestamps) + len(new_data) > 672:

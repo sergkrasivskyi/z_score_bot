@@ -14623,5 +14623,385 @@
     "pair": "AVAX/DODO",
     "zscore": null,
     "correlation": null
+  },
+  {
+    "pair": "LUNC/RLC",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "ZEC/RLC",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "CTSI/DODO",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "ICP/BLUR",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "ROSE/BLUR",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "MANA/MASK",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "LDO/RSR",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "THETA/TLM",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "CTSI/TLM",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "MINA/MANTA",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "STX/NTRN",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "AAVE/CRV",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "FXS/RSR",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "ALICE/GMT",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "LUNC/API3",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "COTI/C98",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "BAL/TLM",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "BAND/TLM",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "THETA/BAND",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "THETA/SAND",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "HFT/TLM",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "NEAR/SNX",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "NEAR/C98",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "SKL/MOVR",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "FIL/RIF",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "NEAR/API3",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "LINK/RLC",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "RLC/SLP",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "STX/NMR",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "NTRN/NMR",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "DOT/TRX",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "LDO/CAKE",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "LDO/AAVE",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "CRV/MDT",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "SNX/TLM",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "KSM/LINA",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "CHR/TLM",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "PERP/LINA",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "XRP/UNI",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "HBAR/AST",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "SNX/JASMY",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "XLM/NEO",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "EOS/JASMY",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "LDO/CVX",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "YGG/C98",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "THETA/SKL",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "JOE/OGN",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "JOE/PERP",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "JOE/BNT",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "ALGO/AST",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "VET/AST",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "VET/CAKE",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "LINK/LIT",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "ALGO/CAKE",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "XAI/GMT",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "JOE/LINA",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "ALGO/RLC",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "AVAX/BAL",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "JOE/ALPHA",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "EGLD/JASMY",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "SNX/SPELL",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "CRV/RLC",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "MANTA/GMT",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "GALA/RLC",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "BTC/BNB",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "ALGO/AXS",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "YGG/GTC",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "CRV/AST",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "CRV/1INCH",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "LINK/OM",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "INJ/LUNC",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "INJ/CTSI",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "IMX/HOOK",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "MANA/OGN",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "NEAR/LUNA",
+    "zscore": null,
+    "correlation": null
+  },
+  {
+    "pair": "CRV/IDEX",
+    "zscore": null,
+    "correlation": null
   }
 ]

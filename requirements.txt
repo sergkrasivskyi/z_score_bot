@@ -3,3 +3,5 @@ requests
 numpy
 aiohttp
 asyncio
+pandas
+scipy

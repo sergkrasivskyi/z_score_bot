@@ -36,7 +36,7 @@ async def fetch_prices(session, symbol):
                 response.raise_for_status()
                 data = await response.json()
                 return [
-                    {"timestamp": int(candle[0] / 1000), "price": float(candle[4])}
+                    {"timestamp": int(candle[6] / 1000), "price": float(candle[4])}
                     for candle in data
                 ]
         except Exception as e:
